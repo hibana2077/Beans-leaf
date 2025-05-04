@@ -1,0 +1,37 @@
+# Beans classifier configuration
+
+# Experiment name
+experiment_name: "beans_binary_classifier"
+
+# Random seed for reproducibility
+seed: 42
+
+# Dataset configuration
+batch_size: 32
+num_workers: 4
+
+# Model configuration
+model_name: "resnet18"  # Model from timm
+num_classes: 1  # 1 for binary classification with sigmoid
+pretrained: true
+
+# Optimizer configuration
+optimizer: "adam"
+learning_rate: 0.001
+weight_decay: 0.0001
+
+# Learning rate scheduler
+scheduler: "cosine"
+scheduler_args:
+  # Additional args for scheduler if needed
+  
+# Loss function
+loss: "bce"  # Binary Cross Entropy for binary classification
+
+# Training configuration
+epochs: 20
+checkpoint_interval: 5  # Save checkpoint every N epochs
+
+# Additional options
+mixed_precision: true  # Whether to use mixed precision training
+early_stopping_patience: 5  # Stop training if validation loss doesn't improve for N epochs
