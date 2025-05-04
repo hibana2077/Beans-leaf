@@ -6,7 +6,7 @@ from torch.optim.lr_scheduler import (
     StepLR,
     OneCycleLR
 )
-
+from .opts.taylorexp import TaylorExp
 
 def get_optimizer(model, optimizer_name='adam', lr=0.001, weight_decay=0.0001, **kwargs):
     """
@@ -31,6 +31,8 @@ def get_optimizer(model, optimizer_name='adam', lr=0.001, weight_decay=0.0001, *
         return optim.SGD(params, lr=lr, momentum=0.9, weight_decay=weight_decay, **kwargs)
     elif optimizer_name.lower() == 'adamw':
         return optim.AdamW(params, lr=lr, weight_decay=weight_decay, **kwargs)
+    elif optimizer_name.lower() == 'taylorexp':
+        return TaylorExp(params, lr=lr, weight_decay=weight_decay, **kwargs)
     else:
         raise ValueError(f"Optimizer '{optimizer_name}' not recognized")
 
