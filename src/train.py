@@ -9,7 +9,7 @@ import timm
 from torch.utils.tensorboard import SummaryWriter
 from datetime import datetime
 
-from dataset import get_data_loaders
+from utils.dataset import get_data_loaders
 from utils.loss import get_loss_function
 from utils.optimizer import get_optimizer, get_scheduler
 
