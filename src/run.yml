@@ -11,7 +11,7 @@ batch_size: 32
 num_workers: 4
 
 # Model configuration
-model_name: "resnet18"  # Model from timm
+model_name: "eva02_tiny_patch14_224"
 num_classes: 1  # 1 for binary classification with sigmoid
 pretrained: true
 
@@ -23,7 +23,7 @@ weight_decay: 0.0001
 # Learning rate scheduler
 scheduler: "cosine"
 scheduler_args:
-  # Additional args for scheduler if needed
+  last_epoch: -1
   
 # Loss function
 loss: "bce"  # Binary Cross Entropy for binary classification

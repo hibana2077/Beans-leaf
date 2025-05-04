@@ -109,8 +109,11 @@ def main():
                         help="Directory to save evaluation results")
     args = parser.parse_args()
     
+    MODEL_NAME = yaml.safe_load(open(args.config, 'r'))['model_name']
+    print(f"Evaluating model: {MODEL_NAME}")
+
     # Create output directory
-    os.makedirs(args.output_dir, exist_ok=True)
+    os.makedirs(args.output_dir + "/" + MODEL_NAME, exist_ok=True)
     
     # Load config
     with open(args.config, 'r') as f:
@@ -163,7 +166,7 @@ def main():
             print(f"  Support:   {metrics['support']}")
     
     # Plot confusion matrix
-    cm_path = os.path.join(args.output_dir, f"confusion_matrix_{args.split}.png")
+    cm_path = os.path.join(args.output_dir + "/" + MODEL_NAME, f"confusion_matrix_{args.split}.png")
     plot_confusion_matrix(results['labels'], results['predictions'], cm_path)
     
     # Save results to YAML
@@ -175,10 +178,10 @@ def main():
         }
     }
     
-    with open(os.path.join(args.output_dir, f"results_{args.split}.yml"), 'w') as f:
+    with open(os.path.join(args.output_dir + "/" + MODEL_NAME, f"results_{args.split}.yml"), 'w') as f:
         yaml.dump(results_to_save, f)
     
-    print(f"Results saved to {args.output_dir}")
+    print(f"Results saved to {os.path.join(args.output_dir + '/' + MODEL_NAME, f'results_{args.split}.yml')}")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,18 @@
+batch_size: 32
+checkpoint_interval: 5
+early_stopping_patience: 5
+epochs: 20
+experiment_name: beans_binary_classifier
+learning_rate: 0.001
+loss: bce
+mixed_precision: true
+model_name: resnet18
+num_classes: 1
+num_workers: 4
+optimizer: adam
+pretrained: true
+scheduler: cosine
+scheduler_args:
+  last_epoch: -1
+seed: 42
+weight_decay: 0.0001
